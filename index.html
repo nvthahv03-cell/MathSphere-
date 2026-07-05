@@ -1106,5 +1106,13 @@ alert("Mở bằng Chrome hoặc Safari trên điện thoại để cài đặt.
             addConsoleLog("Đã xuất và tải về bản ghi danh sách bài nộp định dạng .csv", "success");
         }
     </script>
+    if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(reg => console.log("Service Worker đăng ký thành công!", reg))
+      .catch(err => console.log("Lỗi Service Worker:", err));
+  });
+}
+</script>
 </body>
 </html>
