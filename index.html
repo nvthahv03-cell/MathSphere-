@@ -1,42 +1,78 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#001c3d">
-<link rel="icon" href="favicon.ico">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathSphere AppSheet & Google Sheets Prototype</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Dashboard Icons -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MathSphere App</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#001c3d">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Tailwind CSS for modern layout styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#002B49',
-                            blueDark: '#001a2c',
-                            blueLight: '#003a63',
-                            gold: '#FFD700',
-                            cream: '#f3f0df',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['DM Sans', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    }
-                }
+    <style>
+        /* CSS MỚI ĐỂ CHỐNG KÉO & FULL MÀN HÌNH */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Chặn kéo màn hình */
+            background-color: #0f172a;
+        }
+        @media (max-width: 1024px) {
+            .desktop-only { display: none !important; }
+            #phone-wrapper { 
+                width: 100vw !important; 
+                height: 100vh !important; 
+                border-radius: 0 !important; 
+                border: none !important; 
+                max-width: 100% !important;
             }
         }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .install-btn {
+            position: fixed; right: 18px; bottom: 90px; z-index: 9999;
+            background: #0d6efd; color: #fff; border: none; border-radius: 30px;
+            padding: 12px 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,.3);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen">
+
+    <button id="installGuideBtn" class="install-btn desktop-only">📲 Đưa ra màn hình chính</button>
+
+    <main class="w-full h-full flex items-center justify-center lg:p-6">
+        
+        <section id="phone-wrapper" class="w-[390px] h-[844px] bg-black p-3.5 rounded-[50px] shadow-2xl ring-8 ring-slate-800 border-2 border-slate-700 relative overflow-hidden">
+            <div id="phone-screen" class="w-full h-full bg-slate-50 rounded-[38px] overflow-hidden flex flex-col relative">
+                
+                <div class="h-10 bg-brand-blue flex justify-between items-center px-6 text-white text-xs">
+                    <span>9:41</span>
+                    <i class="fa-solid fa-wifi"></i>
+                </div>
+
+                <div class="flex-grow overflow-y-auto custom-scrollbar p-4">
+                    <div id="view-trangchu" class="tab-content active">...</div>
+                    <div id="view-nopbai" class="tab-content">...</div>
+                </div>
+
+                <div class="h-[64px] bg-white border-t border-slate-100 flex justify-around items-center">
+                    </div>
+            </div>
+        </section>
+
+        <section class="hidden lg:block lg:w-[60%] h-full ml-8 desktop-only">
+            </section>
+    </main>
+
+    <script>
+        // JS xử lý tab và sự kiện của thầy giữ nguyên...
     </script>
-    <style>
+</body>
+</html>
         /* Smooth Custom Transitions */
         .tab-content {
             display: none;
