@@ -38,98 +38,70 @@
             background: #0d6efd; color: #fff; border: none; border-radius: 30px;
             padding: 12px 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,.3);
         }
-    </style>
-</head>
-<body class="flex items-center justify-center h-screen">
+   <style>
+    /* 1. Reset để chống kéo trang (scrolling) toàn cục */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* Chặn hoàn toàn việc kéo trang */
+        background-color: #0f172a; /* Màu nền của thầy */
+    }
 
-    <button id="installGuideBtn" class="install-btn desktop-only">📲 Đưa ra màn hình chính</button>
-
-    <main class="w-full h-full flex items-center justify-center lg:p-6">
-        
-        <section id="phone-wrapper" class="w-[390px] h-[844px] bg-black p-3.5 rounded-[50px] shadow-2xl ring-8 ring-slate-800 border-2 border-slate-700 relative overflow-hidden">
-            <div id="phone-screen" class="w-full h-full bg-slate-50 rounded-[38px] overflow-hidden flex flex-col relative">
-                
-                <div class="h-10 bg-brand-blue flex justify-between items-center px-6 text-white text-xs">
-                    <span>9:41</span>
-                    <i class="fa-solid fa-wifi"></i>
-                </div>
-
-                <div class="flex-grow overflow-y-auto custom-scrollbar p-4">
-                    <div id="view-trangchu" class="tab-content active">...</div>
-                    <div id="view-nopbai" class="tab-content">...</div>
-                </div>
-
-                <div class="h-[64px] bg-white border-t border-slate-100 flex justify-around items-center">
-                    </div>
-            </div>
-        </section>
-
-        <section class="hidden lg:block lg:w-[60%] h-full ml-8 desktop-only">
-            </section>
-    </main>
-
-    <script>
-        // JS xử lý tab và sự kiện của thầy giữ nguyên...
-    </script>
-</body>
-</html>
-        /* Smooth Custom Transitions */
-        .tab-content {
-            display: none;
+    /* 2. Ép App hiển thị full màn hình trên điện thoại */
+    @media (max-width: 1024px) {
+        /* Ẩn cột Database (cột bên phải) */
+        section.lg\:col-span-7 {
+            display: none !important;
         }
-        .tab-content.active {
-            display: block;
-        }
-        /* Custom scrollbar for spreadsheet view */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 3px;
-        }
-        /* Keyframe animation for spreadsheet live-sync effect */
-        @keyframes flash-row {
-            0% { background-color: rgba(255, 215, 0, 0.4); }
-            100% { background-color: transparent; }
-        }
-        .new-sync-row {
-            animation: flash-row 2.5s ease-out forwards;
-        }
-        .install-btn{
-    position:fixed;
-    right:18px;
-    bottom:90px;
-    z-index:9999;
 
-    background:#0d6efd;
-    color:#fff;
-    border:none;
-    border-radius:30px;
+        /* Ép khung chứa điện thoại giãn full màn hình */
+        section.lg\:col-span-5 {
+            width: 100vw !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
 
-    padding:12px 18px;
-    font-size:15px;
-    font-weight:bold;
+        /* Ép khung điện thoại (Mockup) thành 100% màn hình */
+        .w-full.max-w-\[390px\] {
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: 100% !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
 
-    box-shadow:0 4px 15px rgba(0,0,0,.3);
+        /* Ẩn camera/dynamic island trên điện thoại để đỡ rối */
+        .absolute.top-5.left-1\/2 {
+            display: none !important;
+        }
+    }
 
-    cursor:pointer;
-
-    animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.08);}
-    100%{transform:scale(1);}
-}
-    </style>
-</head>
-<!-- Nút cài đặt -->
+    /* Giữ nguyên các style cũ của thầy */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    
+    .install-btn {
+        position: fixed;
+        right: 18px;
+        bottom: 90px;
+        z-index: 9999;
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 18px;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0,0,0,.3);
+        cursor: pointer;
+    }
+</style>
+        <!-- Nút cài đặt -->
 <button id="installGuideBtn" class="install-btn">
     📲 Đưa ra màn hình chính
 </button>
