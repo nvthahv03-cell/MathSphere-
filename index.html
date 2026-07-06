@@ -1105,8 +1105,10 @@ alert("Mở bằng Chrome hoặc Safari trên điện thoại để cài đặt.
             safeAlert("Tệp CSV dữ liệu lưu trữ đã được đóng gói và xuất thành công ra thư mục Downloads của thầy.", "Xuất tệp CSV");
             addConsoleLog("Đã xuất và tải về bản ghi danh sách bài nộp định dạng .csv", "success");
         }
-    </script>
-    if ("serviceWorker" in navigator) {
+   </script>
+
+<script>
+if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./service-worker.js")
       .then(reg => console.log("Service Worker đăng ký thành công!", reg))
@@ -1114,5 +1116,6 @@ alert("Mở bằng Chrome hoặc Safari trên điện thoại để cài đặt.
   });
 }
 </script>
+
 </body>
 </html>
