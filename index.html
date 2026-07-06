@@ -1116,13 +1116,19 @@ alert("Mở bằng Chrome hoặc Safari trên điện thoại để cài đặt.
    </script>
 
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .then(reg => console.log("Service Worker đăng ký thành công!", reg))
-      .catch(err => console.log("Lỗi Service Worker:", err));
-  });
-}
+    (function() {
+        // Tự động tìm khung App và cột Database và gắn thuộc tính để khóa màn hình/ẩn cột
+        const sections = document.querySelectorAll('section');
+        if(sections.length >= 2) {
+            // Khung App (giả định là section đầu tiên)
+            sections[0].style.cssText = "width: 100vw !important; height: 100vh !important; max-width: 100% !important; border-radius: 0 !important; border: none !important; margin: 0 !important; padding: 0 !important;";
+            // Cột Database (giả định là section thứ hai)
+            sections[1].style.cssText = "display: none !important;";
+        }
+        // Khóa cuộn màn hình
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+    })();
 </script>
 
 </body>
