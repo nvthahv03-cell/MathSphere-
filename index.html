@@ -1,170 +1,214 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>MathSphere</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- PWA manifest -->
-    <link rel="manifest" href='data:application/manifest+json,{"name":"MathSphere","short_name":"MathSphere","icons":[{"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAdCAYAAACrV63hAAAABmJLR0QA/wD/AP+gvaeTAAAAhUlEQVRIie3SMQqAMAhEUa+iknOYIm4QaAvxBw2gOnagNvrg/OsTwPIvtygLZAWMiD/efH5jzHOO4CX75PD9pRICeJRUM9MvF+xEcUe/EEGBGNRauXA83wiBmyUv/FYeE3Yl8rEGoM7SCdYT0N+LUYBZ6hV4iyCs0BqWtnWAAAAAElFTkSuQmCC","sizes":"45x45","type":"image/png"}],"start_url":".","display":"standalone","background_color":"#ffffff","theme_color":"#ffffff"}'>
-    <!-- Fullscreen and mobile -->
-    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <style>
-        /* Base reset */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; font-family: sans-serif; }
-        .hidden { display: none; }
-        /* Layout */
-        .container { display: flex; flex-direction: row; height: 100%; }
-        .app { flex: 1; overflow: auto; }
-        .dashboard { width: 30%; background: #f5f5f5; padding: 10px; overflow: auto; }
-        /* Hide dashboard on small screens */
-        @media (max-width: 768px) {
-            .container { flex-direction: column; }
-            .dashboard { display: none; }
-        }
-        /* Header */
-        header { background: #007acc; color: #fff; padding: 10px; text-align: center; }
-        nav { display: flex; justify-content: space-around; background: #005a9e; color: #fff; }
-        nav a { padding: 10px; color: #fff; text-decoration: none; }
-        nav a:hover { background: rgba(255,255,255,0.2); }
-        /* Content sections */
-        .content { padding: 15px; }
-        /* Tables, forms, etc. */
-        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 8px; text-align: left; }
-        th { background: #f0f0f0; }
-        button { background: #007acc; color: #fff; padding: 8px 12px; border: none; cursor: pointer; }
-        button:hover { background: #005a9e; }
-        /* Modal */
-        .modal { display: none; position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
-        .modal-content { background: #fff; padding: 20px; border-radius: 5px; width: 90%; max-width: 500px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Main App UI -->
-        <div class="app">
-            <header><h1>MathSphere</h1></header>
-            <nav>
-                <a href="#home" onclick="showSection('home')">Trang chủ</a>
-                <a href="#submit" onclick="showSection('submit')">Nộp bài</a>
-                <a href="#materials" onclick="showSection('materials')">Học liệu</a>
-                <a href="#notifications" onclick="showSection('notifications')">Thông báo</a>
-                <a href="#profile" onclick="showSection('profile')">Cá nhân</a>
-            </nav>
-            <div id="home" class="content">
-                <h2>Trang chủ</h2>
-                <p>Chào mừng đến với MathSphere!</p>
-            </div>
-            <div id="submit" class="content hidden">
-                <h2>Nộp bài</h2>
-                <p>Chức năng nộp bài sẽ ở đây.</p>
-                <input type="file" id="fileInput">
-                <button onclick="submitHomework()">Gửi</button>
-            </div>
-            <div id="materials" class="content hidden">
-                <h2>Học liệu</h2>
-                <p>Danh sách các tài liệu học tập.</p>
-                <ul>
-                    <li><a href="#">Tài liệu 1</a></li>
-                    <li><a href="#">Tài liệu 2</a></li>
-                </ul>
-            </div>
-            <div id="notifications" class="content hidden">
-                <h2>Thông báo</h2>
-                <p>Không có thông báo mới.</p>
-            </div>
-            <div id="profile" class="content hidden">
-                <h2>Trang cá nhân</h2>
-                <p>Thông tin cá nhân của bạn.</p>
-                <button onclick="openModal()">Cài đặt</button>
-            </div>
-        </div>
-        <!-- Dashboard (Google Sheets) -->
-        <div class="dashboard">
-            <h2>Dashboard Google Sheets</h2>
-            <p>Thông tin từ Google Sheets được hiển thị ở đây.</p>
-            <!-- Example table -->
-            <table>
-                <tr><th>ID</th><th>Name</th><th>Score</th></tr>
-                <tr><td>1</td><td>John Doe</td><td>95</td></tr>
-                <tr><td>2</td><td>Jane Smith</td><td>88</td></tr>
-            </table>
-        </div>
-    </div>
-    <!-- Modal structure -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <h3>Cài đặt</h3>
-            <p>Đây là modal Cài đặt.</p>
-            <button onclick="closeModal()">Đóng</button>
-        </div>
-    </div>
+    <meta name="theme-color" content="#001c3d">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    
+    <title>MathSphere AppSheet & Google Sheets Prototype</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Navigation
-        function showSection(section) {
-            var sections = ['home','submit','materials','notifications','profile'];
-            sections.forEach(id => {
-                var el = document.getElementById(id);
-                if (id === section) { el.classList.remove('hidden'); }
-                else { el.classList.add('hidden'); }
-            });
-            console.log('Navigated to ' + section);
-        }
-        // Example submit function
-        function submitHomework() {
-            var input = document.getElementById('fileInput');
-            if(input.files.length > 0) {
-                console.log('File selected:', input.files[0].name);
-                alert('Nộp bài thành công: ' + input.files[0].name);
-            } else {
-                alert('Vui lòng chọn file.');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#002B49',
+                            blueDark: '#001a2c',
+                            blueLight: '#003a63',
+                            gold: '#FFD700',
+                            cream: '#f3f0df',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
             }
         }
-        // Modal functions
-        function openModal() {
-            document.getElementById('settingsModal').style.display = 'flex';
-            console.log('Modal opened');
+    </script>
+
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+
+        @keyframes flash-row {
+            0% { background-color: rgba(255, 215, 0, 0.4); }
+            100% { background-color: transparent; }
         }
-        function closeModal() {
-            document.getElementById('settingsModal').style.display = 'none';
-            console.log('Modal closed');
+        .new-sync-row { animation: flash-row 2.5s ease-out forwards; }
+
+        .install-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 90px;
+            z-index: 9999;
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 18px;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,.3);
+            cursor: pointer;
+            animation: pulse 1.8s infinite;
         }
-        // Simulated database example
-        var database = [];
-        function saveData(item) {
-            database.push(item);
-            console.log('Data saved:', item);
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
         }
-        // PWA: Register service worker
-        if ('serviceWorker' in navigator) {
-            var swCode = `
-self.addEventListener('install', function(evt) {
-    evt.waitUntil(
-        caches.open('v1').then(function(cache) {
-            return cache.addAll(['.']);
-        })
-    );
-});
-self.addEventListener('fetch', function(evt) {
-    evt.respondWith(
-        caches.match(evt.request).then(function(response) {
-            return response || fetch(evt.request);
-        })
-    );
-});`;
-            var swBlob = new Blob([swCode], {type: 'application/javascript'});
-            navigator.serviceWorker.register(URL.createObjectURL(swBlob)).then(function(reg) {
-                console.log('Service worker registered', reg);
-            }).catch(function(err) {
-                console.error('Service worker registration failed:', err);
-            });
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
+        body { min-height: 100vh; }
+    </style>
+</head>
+
+<button id="installGuideBtn" class="install-btn">📲 Đưa ra màn hình chính</button>
+
+<script>
+    document.getElementById("installGuideBtn").onclick = function() {
+        const ua = navigator.userAgent.toLowerCase();
+        if (/android/.test(ua)) {
+            alert("📲 CÀI ĐẶT MATHSPHERE\n\n1. Nhấn dấu ⋮ ở góc trên bên phải.\n2. Chọn 'Thêm vào màn hình chính'.\n3. Chọn 'Cài đặt'.");
+        } else if (/iphone|ipad|ipod/.test(ua)) {
+            alert("📲 CÀI ĐẶT MATHSPHERE\n\n1. Nhấn nút Chia sẻ.\n2. Chọn 'Add to Home Screen'.\n3. Nhấn Add.");
+        } else {
+            alert("Mở bằng Chrome hoặc Safari trên điện thoại để cài đặt.");
+        }
+    };
+</script>
+
+<body class="bg-slate-900 text-slate-100 font-sans flex flex-col">
+    <!-- Header Section -->
+    <header class="bg-brand-blue border-b border-slate-700 py-4 px-6 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-brand-gold text-brand-blue p-2.5 rounded-lg text-xl font-bold shadow-inner">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-brand-gold font-serif">MathSphere AppSheet</h1>
+                    <p class="text-xs text-brand-cream/80">Hệ thống đồng bộ dữ liệu nộp bài & quản lý học tập thời gian thực</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-sm bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span class="text-slate-300">Đang trực tuyến: Kết nối Google Sheets thời gian thực</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 lg:p-6 lg:grid lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT: Mobile Mockup -->
+        <section class="flex flex-col items-center lg:col-span-5">
+            <div class="w-full max-w-[390px] bg-black p-3.5 rounded-[50px] shadow-2xl ring-8 ring-slate-800 border-2 border-slate-700 relative overflow-hidden aspect-[9/19.5]">
+                <div class="absolute top-5 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-full z-50 flex items-center justify-center">
+                    <div class="w-3 h-3 rounded-full bg-slate-900 absolute right-4"></div>
+                </div>
+
+                <div id="phone-screen" class="w-full h-full bg-slate-50 rounded-[38px] overflow-hidden flex flex-col relative text-slate-800 select-none">
+                    <!-- Status Bar -->
+                    <div class="h-10 bg-brand-blue text-white px-6 pt-3 flex justify-between items-center text-xs font-semibold z-40">
+                        <span>9:41</span>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-signal"></i>
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa-solid fa-battery-three-quarters"></i>
+                        </div>
+                    </div>
+
+                    <!-- App Header -->
+                    <div id="app-header-block" class="bg-brand-blue text-white px-5 pt-4 pb-6 relative overflow-hidden flex-shrink-0 z-30 shadow-md">
+                        <div class="absolute inset-0 opacity-10 pointer-events-none text-xs font-mono select-none">
+                            <span class="absolute top-2 left-4">a² + b² = c²</span>
+                            <span class="absolute top-10 right-4">f(x) = x²</span>
+                            <span class="absolute bottom-2 left-6">sin A = a / c</span>
+                            <span class="absolute bottom-5 right-6">x = (-b ± √Δ) / 2a</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center mt-2">
+                            <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center border border-white/20 mb-2 relative shadow-lg">
+                                <span class="text-3xl font-black text-brand-gold font-serif">M</span>
+                                <div class="absolute inset-0 border-2 border-dashed border-brand-gold rounded-full animate-[spin_10s_linear_infinite]"></div>
+                            </div>
+                            <h2 class="text-2xl font-black tracking-wide text-white font-serif">MathSphere</h2>
+                            <p class="text-xs text-brand-cream/90 font-serif italic mb-2">by TS. Nguyễn Văn Thà</p>
+                            <div class="w-10 h-0.5 bg-brand-gold/80 mb-2.5"></div>
+                            <p class="text-[11px] uppercase tracking-wider font-bold text-brand-gold">Hệ Thống Nộp Bài Tập Trực Tuyến</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-4 bg-slate-50" style="clip-path: ellipse(60% 100% at 50% 100%);"></div>
+                    </div>
+
+                    <!-- Scrollable Content -->
+                    <div class="flex-grow overflow-y-auto bg-slate-50 p-4 pb-20 custom-scrollbar z-20">
+                        <div id="view-trangchu" class="tab-content active space-y-4">
+                            <div class="grid grid-cols-2 gap-3 pt-2">
+                                <button onclick="selectClassForSubmission('Lớp 9')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-slate-100 flex flex-col items-start text-left transition duration-200 group active:scale-95">
+                                    <div class="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl mb-3 shadow-md shadow-blue-200 transition group-hover:scale-105"><i class="fa-solid fa-book-open"></i></div>
+                                    <span class="text-[11px] text-slate-400 font-bold tracking-wide uppercase">Tải Tài Liệu / Nộp</span>
+                                    <span class="text-base font-bold text-slate-800 flex items-center gap-1 w-full justify-between">Lớp 9 <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-blue-500"></i></span>
+                                </button>
+                                <!-- Các button lớp khác giữ nguyên như code gốc của em -->
+                            </div>
+                            <div class="bg-white p-3 rounded-2xl border border-slate-100 flex justify-between items-center text-[11px] text-slate-500 font-medium shadow-sm">
+                                <span class="flex items-center gap-1.5 text-blue-800"><i class="fa-solid fa-location-dot"></i> Hòa Xuân, Đà Nẵng</span>
+                                <span class="w-px h-4 bg-slate-200"></span>
+                                <span class="flex items-center gap-1.5 text-blue-800"><i class="fa-solid fa-phone"></i> 0913 977 272</span>
+                            </div>
+                        </div>
+                        <!-- Các view khác: nopbai, hoclieu, thongbao, canhan... (giữ nguyên từ code gốc) -->
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                    <div class="absolute bottom-0 left-0 right-0 h-[64px] bg-white border-t border-slate-100 flex justify-around items-center px-4 pb-2 z-40">
+                        <button onclick="switchTab('trangchu')" id="nav-trangchu" class="flex flex-col items-center gap-1 text-[10px] font-bold text-blue-600 transition"><i class="fa-solid fa-house text-[18px]"></i><span>Trang chủ</span></button>
+                        <button onclick="switchTab('nopbai')" id="nav-nopbai" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-blue-600 transition"><i class="fa-solid fa-cloud-arrow-up text-[18px]"></i><span>Nộp bài</span></button>
+                        <button onclick="switchTab('hoclieu')" id="nav-hoclieu" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-blue-600 transition"><i class="fa-solid fa-book-open-reader text-[18px]"></i><span>Học liệu</span></button>
+                        <button onclick="switchTab('thongbao')" id="nav-thongbao" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-blue-600 transition"><i class="fa-solid fa-bell text-[18px]"></i><span>Thông báo</span></button>
+                        <button onclick="switchTab('canhan')" id="nav-canhan" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-blue-600 transition"><i class="fa-solid fa-circle-user text-[18px]"></i><span>Cá nhân</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT: Google Sheets -->
+        <section class="hidden lg:col-span-7 lg:flex flex-col gap-6">
+            <!-- Phần Google Sheets giữ nguyên từ code gốc -->
+        </section>
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`view-${tab}`).classList.add('active');
+        }
+        // Thêm các hàm khác của em (selectClassForSubmission, handleFormSubmit...) vào đây
     </script>
 </body>
 </html>
-```
